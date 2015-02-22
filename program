@@ -1,0 +1,154 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+
+void compute (double  [], double [], double  [], double &, const int, const double); 
+void sort (int  [], double  [], double  [], double  [], const int );
+void print (const int [], const double [], const double [], const double [], const int, const double);
+void swap (int [], int, int);
+void swap (double [], int, int);
+
+int main()
+{
+
+	const int size = 7;
+	const double fit = .9;
+
+	int customer [size] = {0};
+	double previousbalance [size] = {0};
+	double payments [size] = {0};
+	double charges [size] = {0};
+	double monthendbalance = 0;
+
+	for (int x = 0; x < size; x++)
+	{
+		cout<<"Enter the customer number: ";
+		cin>>customer[x];
+
+		cout<<"Enter the previous balance: ";
+		cin>>previousbalance[x];
+
+		cout<<"Enter the payments: ";
+		cin>>payments[x];
+
+		cout<<"Enter the charges: ";
+		cin>>charges[x];
+
+				
+cout <<"\nThe new balance is: "<<newbalance;
+
+	}
+
+	
+	compute (previousbalance, payments, charges,monthendbalance, size, fit );
+	sort (customer, previousbalance, payments, charges, size);
+	print (customer, previousbalance, payments, charges, size, monthendbalance);
+
+
+	return 0;
+
+}
+
+void compute ( double previous [], double pay [], double cha [], double & meb, const int size, const double fit)
+
+{
+	
+	double newbalance = 0, financecharge = 0, annualrate = 2.16;
+
+	for (int j = 0; j < size; j++)
+	{
+		newbalance = previous [j] - pay [j] + cha [j];
+		financecharge = newbalance * annualrate;
+		meb = newbalance + financecharge;
+
+
+		
+cout <<"\nThe new balance is: "<<newbalance;
+
+cout <<"\nThe finance charge is: " <<financecharge;
+
+cout <<"\nThe month end balance is: " <<meb;
+
+	}
+
+
+void print (const int custnum [], const double previous [], const double pay [], const double cha [], const int size, const double meb )
+{
+	cout <<endl;
+
+
+for (int x = 0; x =  size; x++)
+{
+
+	cout<<setprecision(3)
+		<<setiosflags(ios::fixed | ios::showpoint)
+		<<custnum[x]<<setw(9)<<previous[x]<<setw(10)<<pay[x]<<setw(9)<<cha[x]<<endl;
+}
+
+
+
+cout <<"\nThe month end balance is: " <<meb<<endl;
+
+
+}
+
+
+
+void sort (int custnum [], double previous [], double pay [], double cha [], const int size)
+{
+
+	for (int pass = 1; pass < size - 1; pass ++)
+	{
+		for (int i = 0; i < size - 2; i++)
+		{
+
+			if (custnum[i]>custnum[i+1])
+			{
+
+				swap (custnum, i, i+1);
+				swap (previous, i, i+1);
+				swap (pay, i, i+1);
+				swap (cha, i, i+1);
+
+			}
+
+		}
+
+	}
+
+}
+
+
+void swap (int array [], int first, int second)
+{
+
+	int hold;
+
+	hold = array [first];
+	array[first] = array [second];
+	array[second] = hold;
+}
+
+void swap (double array [], int first, int second)
+{
+
+	double hold;
+
+	hold = array [first];
+	array[first] = array [second];
+	array[second] = hold;
+
+}
+
+
+
+
+
+
+
+
+
+
+
